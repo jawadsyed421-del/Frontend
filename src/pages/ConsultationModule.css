@@ -1,0 +1,421 @@
+/* Geometry measured from PDF pages 12–47 (1840pt page → 1728px design). */
+
+.consulta {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 519px;
+  column-gap: 156px;
+  align-items: start;
+  padding: 57px 86px 150px 84px;
+  background: var(--surface);
+}
+
+.consulta__title {
+  margin: 0 0 63px;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+  color: var(--ink);
+}
+
+/* ---------- stepper ---------- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 23px;
+  position: relative;
+  padding-bottom: 66px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.step__marker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eef0f3;
+}
+
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 52px;
+  bottom: 14px;
+  width: 2px;
+  background: #eef0f3;
+}
+
+.step__content {
+  padding-top: 5px;
+  max-width: 821px;
+}
+
+.step__title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.step__desc {
+  margin: 10px 0 0;
+  max-width: 740px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.step__options {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 40px;
+  padding-left: 17px;
+}
+
+.step__textarea {
+  display: block;
+  width: 100%;
+  max-width: 821px;
+  min-height: 170px;
+  margin-top: 26px;
+  padding: 19px 22px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+}
+
+.step__textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.step__textarea:focus {
+  border-color: var(--blue);
+}
+
+/* ---------- pill radio (consultation variant) ---------- */
+
+.radio--pill {
+  align-items: center;
+  gap: 20px;
+  margin: 0 -14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background-color 0.15s ease;
+}
+
+.radio--pill:hover {
+  background: #f2f4f7;
+}
+
+.radio--pill.is-checked {
+  background: var(--blue-soft);
+}
+
+.radio--pill .radio__dot {
+  margin-top: 0;
+}
+
+.radio--pill .radio__label {
+  font-size: 19px;
+}
+
+.radio--pill.is-checked .radio__label {
+  color: var(--blue);
+}
+
+/* ---------- text field ---------- */
+
+.field--companion {
+  margin: 4px 0 4px 46px;
+  max-width: 480px;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+.field__input {
+  width: 100%;
+  height: 56px;
+  padding: 0 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 18px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field__input::placeholder {
+  color: var(--ink-faint);
+}
+
+.field__input:focus {
+  border-color: var(--blue);
+}
+
+/* ---------- signos vitales ---------- */
+
+.vitals {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 821px;
+  margin-top: 22px;
+}
+
+.vital__label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 19px;
+  color: var(--ink-2);
+}
+
+.vital__unit {
+  font-size: 15px;
+  color: var(--green-accent);
+}
+
+.vital__field {
+  height: 57px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  transition: border-color 0.15s ease;
+}
+
+.vital__field:focus-within {
+  border-color: var(--blue);
+}
+
+.vital__input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: none;
+  background: none;
+  font-size: 22px;
+  text-align: center;
+}
+
+.vital__field--split {
+  padding: 0 8px;
+}
+
+.vital__slash {
+  flex: 0 0 auto;
+  font-size: 20px;
+  color: var(--ink-faint);
+}
+
+/* ---------- prescripción médica ---------- */
+
+.rx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 821px;
+  margin-top: 24px;
+}
+
+.rx {
+  padding: 22px 24px 20px;
+  border-radius: 10px;
+  background: #f6f8fa;
+}
+
+.rx__name {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.rx__route {
+  margin: 0 0 14px;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+.rx__line {
+  margin: 0 0 14px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.rx__line strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.rx__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.rx__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #e8ebef;
+  font-size: 17px;
+  color: var(--ink-2);
+  transition: background-color 0.15s ease;
+}
+
+.rx__btn:hover {
+  background: #dde1e6;
+}
+
+.rx__btn .material-symbols-rounded {
+  font-size: 19px;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.soft-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 24px;
+  border-radius: 10px;
+  background: #e9edf2;
+  font-size: 18px;
+  color: var(--ink-2);
+  transition: background-color 0.15s ease;
+}
+
+.soft-btn:hover {
+  background: #dfe4ea;
+}
+
+.soft-btn--inline {
+  margin-top: 24px;
+}
+
+.soft-btn--block {
+  width: 100%;
+}
+
+.soft-btn .material-symbols-rounded {
+  font-size: 21px;
+}
+
+/* ---------- adjuntar archivos ---------- */
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 821px;
+  height: 196px;
+  margin-top: 24px;
+  border: 2px dashed var(--border-strong);
+  border-radius: 10px;
+  background: #fafbfc;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--ink-muted);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.dropzone:hover {
+  background: #e8f1fe;
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.dropzone__icon {
+  font-size: 26px;
+}
+
+.files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 821px;
+  margin-top: 24px;
+}
+
+.file {
+  width: 150px;
+  height: 128px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.file__badge {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 42px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.file__badge--pdf {
+  background: #e8453c;
+}
+
+.file__name {
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+
+.file--add {
+  border: 2px dashed var(--border-strong);
+  color: var(--ink-muted);
+  background: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.file--add:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.file--add .material-symbols-rounded {
+  font-size: 30px;
+}

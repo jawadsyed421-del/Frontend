@@ -1,0 +1,5 @@
+node_modules
+dist
+
+# 219 MB design source — keep it local, not in history
+Untitled.pdf

@@ -1,0 +1,306 @@
+/* Geometry below is measured from the 1728px-wide prototype frames in /design-refs. */
+
+.dashboard__greeting {
+  margin: 0 0 45px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+}
+
+.dashboard__grid {
+  display: grid;
+  /* 427px / 817px split with a 31px gutter. */
+  grid-template-columns: 427fr 817fr;
+  gap: var(--card-gap);
+  align-items: start;
+}
+
+/* ============ Próximas citas ============ */
+
+.appointments {
+  display: flex;
+  flex-direction: column;
+  min-height: 412px;
+  padding: 26px 23px 14px;
+}
+
+.appointments__list {
+  list-style: none;
+  margin: 25px 0 0;
+  padding: 0;
+  flex: 1;
+}
+
+.appointment {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.appointment + .appointment {
+  margin-top: 28px;
+}
+
+.appointment > div {
+  min-width: 0;
+}
+
+.appointment__spacer {
+  flex: 0 0 38px;
+  width: 38px;
+}
+
+.avatar {
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+
+.appointment__name {
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.appointment__meta {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-muted);
+}
+
+.appointments__actions,
+.gifts__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 30px -10px 0;
+}
+
+.appointments__create {
+  flex: 1;
+}
+
+/* ============ Estadísticas ============ */
+
+.stats {
+  display: grid;
+  /* 436px rings region / 292px suggestions region, 25px apart. */
+  grid-template-columns: 436fr 292fr;
+  grid-template-rows: 1fr auto;
+  column-gap: 25px;
+  min-height: 412px;
+  padding: 26px 23px 14px;
+}
+
+.stats__left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stats__rings {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding-top: 17px;
+}
+
+.stats__divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 10px 0 24px;
+  background: var(--border);
+}
+
+.stat {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
+}
+
+.stat__ring {
+  width: 170px;
+  height: 170px;
+  flex: 0 0 170px;
+  border: 3px solid var(--blue-ring);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.stat__value {
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  color: var(--ink);
+}
+
+.stat__caption {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: pre-line;
+  color: var(--ink-2);
+}
+
+.stats__cta {
+  grid-column: 1 / -1;
+  margin-top: 7px;
+}
+
+.stats__right {
+  min-width: 0;
+  padding-top: 6px;
+}
+
+.stats__lead {
+  margin: 0 0 28px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.suggestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.suggestion + .suggestion {
+  margin-top: 22px;
+}
+
+.suggestion__icon {
+  flex: 0 0 auto;
+  font-size: 21px;
+  margin-top: 2px;
+  color: var(--green-accent);
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ============ Obsequios en circulación ============ */
+
+.gifts {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  padding: 26px 23px 14px;
+}
+
+.gifts__list {
+  list-style: none;
+  margin: 25px 0 0;
+  padding: 0;
+  flex: 1;
+}
+
+.gift {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.gift + .gift {
+  margin-top: 24px;
+}
+
+.gift__dot {
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--green-dot);
+}
+
+.gift__title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.gift__meta {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-muted);
+}
+
+/* ============ Mi cuaderno de notas ============ */
+
+.notes {
+  position: relative;
+  min-height: 300px;
+  padding: 26px 23px 100px;
+}
+
+.notes__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 262px));
+  gap: 26px;
+  margin-top: 28px;
+}
+
+.note {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px 24px;
+  background: var(--surface);
+}
+
+.note__title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.note__body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.note__label {
+  margin: 0 0 14px;
+  font-size: 17px;
+  color: var(--ink-muted);
+}
+
+.note__links {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.note__links a {
+  color: var(--blue);
+  word-break: break-all;
+}
+
+.notes__new {
+  position: absolute;
+  right: 23px;
+  bottom: 24px;
+}

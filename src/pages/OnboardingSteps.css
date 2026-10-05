@@ -1,0 +1,363 @@
+/* Geometry measured from PDF pages 80–90. */
+
+.flow {
+  position: relative;
+  min-height: 100%;
+  background: var(--surface);
+}
+
+.flow__top {
+  height: 78px;
+  border-bottom: 1px solid var(--border);
+}
+
+.flow__lead {
+  position: absolute;
+  left: 106px;
+  top: 157px;
+}
+
+.flow__round {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #eceef1;
+  color: var(--ink-2);
+  transition: background-color 0.15s ease;
+}
+
+.flow__round:hover {
+  background: #e0e3e7;
+}
+
+.flow__round .material-symbols-rounded {
+  font-size: 24px;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.flow__main {
+  padding: 0 24px 80px;
+}
+
+.flow__cta {
+  height: 52px;
+  min-width: 124px;
+  padding: 0 26px;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.flow__cta:hover {
+  background: var(--blue-hover);
+}
+
+/* ---------------- outlook message (80–83) ---------------- */
+
+.msg {
+  max-width: 820px;
+  margin-left: 61px;
+  padding-top: 68px;
+}
+
+.msg__title {
+  margin: 0 0 47px;
+  max-width: 780px;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 59px;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+
+.msg__para {
+  margin: 0 0 28px;
+  max-width: 700px;
+  font-size: 20px;
+  line-height: 31px;
+  color: var(--ink-2);
+}
+
+.msg__para strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.msg .flow__cta {
+  margin-top: 22px;
+}
+
+/* ---------------- completa tu registro (84–85) ---------------- */
+
+.registro {
+  width: 354px;
+  margin: 0 auto;
+  padding-top: 77px;
+}
+
+.registro__title {
+  margin: 0 0 46px;
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.rfield {
+  margin-bottom: 26px;
+}
+
+.rfield__label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 19px;
+  color: var(--ink-2);
+}
+
+.rfield__hint {
+  margin: -6px 0 10px;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.rfield__wrap {
+  position: relative;
+}
+
+.rfield__input {
+  width: 100%;
+  height: 61px;
+  padding: 0 52px 0 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  font-size: 18px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.rfield__input:focus {
+  border-color: var(--blue);
+}
+
+.rfield__eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--ink-2);
+}
+
+.rfield__eye:hover {
+  background: #f1f3f6;
+}
+
+.rfield__eye .material-symbols-rounded {
+  font-size: 21px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.rfield__wrap--prefix .rfield__input {
+  padding-left: 60px;
+}
+
+.rfield__prefix {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  color: var(--ink-2);
+  pointer-events: none;
+}
+
+.registro__question {
+  margin: 0 0 18px;
+  font-size: 19px;
+  color: var(--ink-2);
+}
+
+.registro__choice {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 52px;
+}
+
+.registro__submit {
+  width: 100%;
+  height: 54px;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.registro__submit:hover {
+  background: var(--blue-hover);
+}
+
+.registro__submit.is-idle {
+  background: #9cc6fb;
+}
+
+/* ---------------- verificación de identidad (86–88) ---------------- */
+
+.verify {
+  max-width: 962px;
+  margin: 0 auto;
+  padding-top: 84px;
+  text-align: center;
+}
+
+.verify__title {
+  margin: 0 0 32px;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: -0.3px;
+}
+
+.verify__accent {
+  color: var(--blue);
+}
+
+.verify__lead {
+  margin: 0 0 28px;
+  font-size: 19px;
+  line-height: 27px;
+  color: var(--ink-2);
+}
+
+.verify__frame {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 512px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: var(--surface);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.verify__frame:hover {
+  border-color: var(--blue);
+}
+
+.verify__frame.is-captured {
+  background: #20242a;
+  border-color: #20242a;
+}
+
+.verify__hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  color: var(--ink-faint);
+}
+
+.verify__hint .material-symbols-rounded {
+  font-size: 34px;
+}
+
+.verify__submit {
+  width: 310px;
+  margin-top: 42px;
+}
+
+/* ---------------- revisión (89) ---------------- */
+
+.revision {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-top: 290px;
+  text-align: center;
+}
+
+.revision__text {
+  margin: 0 0 46px;
+  font-size: 20px;
+  line-height: 33px;
+  color: var(--ink-2);
+}
+
+.revision__actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.revision__btn {
+  height: 54px;
+  min-width: 350px;
+  border-radius: 8px;
+  background: #f2f4f6;
+  font-size: 20px;
+  color: var(--ink);
+  transition: background-color 0.15s ease;
+}
+
+.revision__btn:hover {
+  background: #e8eaee;
+}
+
+.revision__btn--primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+.revision__btn--primary:hover {
+  background: var(--blue-hover);
+}
+
+/* ---------------- bienvenida (90) ---------------- */
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px 24px 160px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.welcome__title {
+  margin: 0 0 86px;
+  max-width: 820px;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 80px;
+  letter-spacing: -1px;
+  color: #26292d;
+}
+
+.welcome__cta {
+  height: 52px;
+  min-width: 304px;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.welcome__cta:hover {
+  background: var(--blue-hover);
+}

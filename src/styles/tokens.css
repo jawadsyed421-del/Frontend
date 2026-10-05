@@ -1,0 +1,40 @@
+/* Values sampled directly from the Figma prototype captures in /design-refs. */
+:root {
+  /* Brand */
+  --blue: #0076ff;
+  --blue-hover: #0068e0;
+  --blue-soft: #e7efff;
+  --blue-ring: #47a9fe;
+  --green: #50be2d;
+  --green-hover: #47ab28;
+  --green-accent: #00af74;
+  --green-dot: #29dc7b;
+  --pink: #ff1b6d;
+
+  /* Surfaces */
+  --page: #fafbfc;
+  --surface: #ffffff;
+  --surface-soft: #ecf1f8;
+  --border: #e6e8ec;
+  --border-strong: #d9dde3;
+
+  /* Text */
+  --ink: #101114;
+  --ink-2: #2e3238;
+  --ink-muted: #6f757a;
+  --ink-faint: #9aa0a6;
+
+  /* Metrics (design frame is 1728px wide) */
+  --sidebar-w: 315px;
+  --topbar-h: 69px;
+  --gutter: 68px;
+  --card-gap: 31px;
+  --radius-card: 14px;
+  --radius-control: 10px;
+
+  --shadow-card: 0 1px 2px rgba(16, 17, 20, 0.04);
+  --shadow-float: 0 8px 28px rgba(16, 17, 20, 0.12);
+
+  --font: 'DM Sans', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+}
