@@ -1,5 +1,6 @@
-import { Suspense, lazy } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Suspense, lazy, useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { NavProvider, useNav } from './components/nav-drawer'
 import Dashboard from './pages/Dashboard'
 
 /* Every screen but the landing dashboard is split into its own chunk, so the
@@ -48,47 +49,65 @@ const PLACEHOLDERS = [
 
 export default function App() {
   return (
-    <Suspense fallback={<div className="route-fallback" aria-busy="true" />}>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
+    <NavProvider>
+      <AppRoutes />
+    </NavProvider>
+  )
+}
 
-        {/* consulta médica (PDF 12–47, 56–60) */}
-        <Route path="/consulta" element={<ConsultationModule />} />
-        <Route path="/consulta/sin-expediente" element={<ConsultationModule requireRecord />} />
-        <Route path="/consulta/preparando" element={<PreparingConsultation />} />
-        <Route path="/consulta/abriendo" element={<OpeningConsultation />} />
+function AppRoutes() {
+  const location = useLocation()
+  const { setOpen } = useNav()
 
-        {/* expediente digital (PDF 48–55, 58–59) */}
-        <Route path="/expediente" element={<Expediente />} />
-        <Route path="/expediente/nuevo" element={<CrearExpediente />} />
-        <Route path="/expediente/:section" element={<Expediente />} />
+  // Following a link from inside the drawer should also dismiss it.
+  useEffect(() => setOpen(false), [location.pathname, setOpen])
 
-        {/* onboarding (PDF 61–90) */}
-        <Route path="/registro/codigo" element={<CodigoMedico />} />
-        <Route path="/registro/cuenta" element={<CrearCuenta />} />
-        <Route
-          path="/registro/incertidumbre"
-          element={<OutlookMessage variant="incertidumbre" />}
-        />
-        <Route path="/registro/prosperidad" element={<OutlookMessage variant="prosperidad" />} />
-        <Route path="/registro/completar" element={<CompletaRegistro />} />
-        <Route path="/registro/verificacion" element={<VerificacionFoto />} />
-        <Route path="/registro/revision" element={<FotoRevision />} />
-        <Route path="/registro/bienvenida" element={<Bienvenida />} />
+  return (
+    /* Keyed on the path so every navigation remounts the wrapper and replays
+       the rise-and-fade in global.css, instead of the screen snapping over. */
+    <div className="route" key={location.pathname}>
+      <Suspense fallback={<div className="route-fallback" aria-busy="true" />}>
+        <Routes location={location}>
+          <Route path="/" element={<Dashboard />} />
 
-        {/* ApoloCalendar (PDF 91–148) */}
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/calendar/pacientes" element={<PacientesBuscar />} />
-        <Route path="/calendar/paciente" element={<PacienteCitas />} />
-        <Route path="/calendar/:view" element={<Calendar />} />
+          {/* consulta médica (PDF 12–47, 56–60) */}
+          <Route path="/consulta" element={<ConsultationModule />} />
+          <Route path="/consulta/sin-expediente" element={<ConsultationModule requireRecord />} />
+          <Route path="/consulta/preparando" element={<PreparingConsultation />} />
+          <Route path="/consulta/abriendo" element={<OpeningConsultation />} />
 
-        {/* later dashboard (PDF 149–164) */}
-        <Route path="/inicio" element={<Inicio />} />
+          {/* expediente digital (PDF 48–55, 58–59) */}
+          <Route path="/expediente" element={<Expediente />} />
+          <Route path="/expediente/nuevo" element={<CrearExpediente />} />
+          <Route path="/expediente/:section" element={<Expediente />} />
 
-        {PLACEHOLDERS.map(([path, title]) => (
-          <Route key={path} path={path} element={<Placeholder title={title} />} />
-        ))}
-      </Routes>
-    </Suspense>
+          {/* onboarding (PDF 61–90) */}
+          <Route path="/registro/codigo" element={<CodigoMedico />} />
+          <Route path="/registro/cuenta" element={<CrearCuenta />} />
+          <Route
+            path="/registro/incertidumbre"
+            element={<OutlookMessage variant="incertidumbre" />}
+          />
+          <Route path="/registro/prosperidad" element={<OutlookMessage variant="prosperidad" />} />
+          <Route path="/registro/completar" element={<CompletaRegistro />} />
+          <Route path="/registro/verificacion" element={<VerificacionFoto />} />
+          <Route path="/registro/revision" element={<FotoRevision />} />
+          <Route path="/registro/bienvenida" element={<Bienvenida />} />
+
+          {/* ApoloCalendar (PDF 91–148) */}
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calendar/pacientes" element={<PacientesBuscar />} />
+          <Route path="/calendar/paciente" element={<PacienteCitas />} />
+          <Route path="/calendar/:view" element={<Calendar />} />
+
+          {/* later dashboard (PDF 149–164) */}
+          <Route path="/inicio" element={<Inicio />} />
+
+          {PLACEHOLDERS.map(([path, title]) => (
+            <Route key={path} path={path} element={<Placeholder title={title} />} />
+          ))}
+        </Routes>
+      </Suspense>
+    </div>
   )
 }

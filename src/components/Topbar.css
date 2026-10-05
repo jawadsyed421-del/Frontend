@@ -4,8 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 0 30px;
+  gap: 1.5rem;
+  padding: 0 1.875rem;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   position: relative;
@@ -20,12 +20,12 @@
 .topbar__actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 0.875rem;
 }
 
 .topbar__icon-btn {
-  width: 42px;
-  height: 42px;
+  width: 2.625rem;
+  height: 2.625rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -34,7 +34,7 @@
 }
 
 .topbar__icon-btn .material-symbols-rounded {
-  font-size: 26px;
+  font-size: 1.625rem;
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
@@ -53,10 +53,10 @@
 /* ---- offline pill and notification count (PDF pages 155–159) ---- */
 
 .topbar__offline {
-  padding: 7px 14px;
-  border-radius: 6px;
+  padding: 0.4375rem 0.875rem;
+  border-radius: 0.375rem;
   background: #ffd9e2;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #d1234c;
 }
 
@@ -68,14 +68,14 @@
   position: absolute;
   top: -2px;
   right: -2px;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.3125rem;
   display: grid;
   place-items: center;
-  border-radius: 9px;
+  border-radius: 0.5625rem;
   background: #f5245c;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: #fff;
 }

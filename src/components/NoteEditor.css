@@ -6,20 +6,20 @@
   z-index: 130;
   display: grid;
   place-items: center;
-  padding: 48px 24px;
+  padding: 3rem 1.5rem;
   background: rgba(32, 33, 36, 0.4);
 }
 
 .ned {
   display: flex;
   flex-direction: column;
-  width: 1118px;
+  width: 69.875rem;
   max-width: 100%;
-  height: 940px;
+  height: 58.75rem;
   max-height: 100%;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background: var(--surface);
-  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1.625rem 5rem rgba(0, 0, 0, 0.3);
 }
 
 .ned__head {
@@ -27,8 +27,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 18px;
-  padding: 18px 24px;
+  gap: 1.125rem;
+  padding: 1.125rem 1.5rem;
 }
 
 .ned__title {
@@ -36,21 +36,21 @@
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 500;
 }
 
 .ned__head-actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 1.125rem;
 }
 
 .ned__discard {
-  height: 40px;
-  padding: 0 12px;
-  border-radius: 8px;
-  font-size: 17px;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 1.0625rem;
   color: var(--ink-2);
 }
 
@@ -59,12 +59,12 @@
 }
 
 .ned__save {
-  height: 40px;
-  padding: 0 20px;
-  border-radius: 8px;
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  border-radius: 0.5rem;
   background: var(--blue);
   color: #fff;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 500;
   transition: background-color 0.15s ease;
 }
@@ -79,7 +79,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 6px 20px 12px;
+  padding: 0.375rem 1.25rem 0.75rem;
   border-bottom: 1px solid var(--border);
   overflow-x: auto;
 }
@@ -89,11 +89,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  height: 32px;
-  min-width: 32px;
-  padding: 0 6px;
-  border-radius: 6px;
+  gap: 0.25rem;
+  height: 2rem;
+  min-width: 2rem;
+  padding: 0 0.375rem;
+  border-radius: 0.375rem;
   color: var(--ink-2);
   transition: background-color 0.12s ease;
 }
@@ -108,21 +108,21 @@
 }
 
 .ned__toolbar .material-symbols-rounded {
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 .ned__select {
-  padding: 0 8px !important;
-  font-size: 15px;
+  padding: 0 0.5rem !important;
+  font-size: 0.9375rem;
   white-space: nowrap;
 }
 
 .ned__sep {
   flex: 0 0 auto;
   width: 1px;
-  height: 22px;
-  margin: 0 6px;
+  height: 1.375rem;
+  margin: 0 0.375rem;
   background: var(--border);
 }
 
@@ -130,18 +130,18 @@
   flex-direction: column !important;
   gap: 0 !important;
   position: relative;
-  padding-right: 16px !important;
+  padding-right: 1rem !important;
 }
 
 .ned__glyph {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1;
 }
 
 .ned__swatch {
   display: block;
-  width: 16px;
+  width: 1rem;
   height: 3px;
   margin-top: 2px;
   border-radius: 1px;
@@ -153,7 +153,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 /* ---- sheet ---- */
@@ -163,13 +163,13 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 26px 34px 34px;
+  padding: 1.625rem 2.125rem 2.125rem;
 }
 
 .ned__input-title {
   border: 0;
   outline: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--ink);
 }
@@ -180,15 +180,38 @@
 
 .ned__input-body {
   flex: 1;
-  margin-top: 14px;
+  margin-top: 0.875rem;
   border: 0;
   outline: none;
   resize: none;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--ink);
 }
 
 .ned__input-body::placeholder {
   color: var(--ink-faint);
+}
+
+/* --------------------------------- phone --------------------------------- */
+
+@media (max-width: 767px) {
+  /* The editor is a fixed 1118x940 sheet at design size; on a phone it simply
+     takes the screen. */
+  .ned {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .ned__head {
+    padding: 10px 12px;
+  }
+
+  .ned__title {
+    position: static;
+    transform: none;
+    font-size: 16px;
+  }
 }

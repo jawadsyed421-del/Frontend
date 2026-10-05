@@ -1,8 +1,8 @@
 /* Geometry below is measured from the 1728px-wide prototype frames in /design-refs. */
 
 .dashboard__greeting {
-  margin: 0 0 45px;
-  font-size: 40px;
+  margin: 0 0 2.8125rem;
+  font-size: 2.5rem;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.6px;
@@ -11,7 +11,7 @@
 
 .dashboard__grid {
   display: grid;
-  /* 427px / 817px split with a 31px gutter. */
+  /* 427px / 817px split with a 31px gutter, in rem so the frame scales. */
   grid-template-columns: 427fr 817fr;
   gap: var(--card-gap);
   align-items: start;
@@ -22,13 +22,13 @@
 .appointments {
   display: flex;
   flex-direction: column;
-  min-height: 412px;
-  padding: 26px 23px 14px;
+  min-height: 25.75rem;
+  padding: 1.625rem 1.4375rem 0.875rem;
 }
 
 .appointments__list {
   list-style: none;
-  margin: 25px 0 0;
+  margin: 1.5625rem 0 0;
   padding: 0;
   flex: 1;
 }
@@ -36,11 +36,11 @@
 .appointment {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .appointment + .appointment {
-  margin-top: 28px;
+  margin-top: 1.75rem;
 }
 
 .appointment > div {
@@ -48,8 +48,8 @@
 }
 
 .appointment__spacer {
-  flex: 0 0 38px;
-  width: 38px;
+  flex: 0 0 2.375rem;
+  width: 2.375rem;
 }
 
 .avatar {
@@ -58,18 +58,18 @@
 }
 
 .appointment__name {
-  margin: 0 0 4px;
+  margin: 0 0 0.25rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 400;
   color: var(--ink);
 }
 
 .appointment__meta {
   margin: 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--ink-muted);
 }
 
@@ -77,8 +77,8 @@
 .gifts__actions {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 30px -10px 0;
+  gap: 0.5rem;
+  margin: 1.875rem -0.625rem 0;
 }
 
 .appointments__create {
@@ -92,9 +92,9 @@
   /* 436px rings region / 292px suggestions region, 25px apart. */
   grid-template-columns: 436fr 292fr;
   grid-template-rows: 1fr auto;
-  column-gap: 25px;
-  min-height: 412px;
-  padding: 26px 23px 14px;
+  column-gap: 1.5625rem;
+  min-height: 25.75rem;
+  padding: 1.625rem 1.4375rem 0.875rem;
 }
 
 .stats__left {
@@ -108,13 +108,13 @@
   display: flex;
   align-items: flex-start;
   gap: 0;
-  padding-top: 17px;
+  padding-top: 1.0625rem;
 }
 
 .stats__divider {
   width: 1px;
   align-self: stretch;
-  margin: 10px 0 24px;
+  margin: 0.625rem 0 1.5rem;
   background: var(--border);
 }
 
@@ -124,13 +124,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 21px;
+  gap: 1.3125rem;
 }
 
 .stat__ring {
-  width: 170px;
-  height: 170px;
-  flex: 0 0 170px;
+  width: 10.625rem;
+  height: 10.625rem;
+  flex: 0 0 10.625rem;
   border: 3px solid var(--blue-ring);
   border-radius: 50%;
   display: grid;
@@ -138,7 +138,7 @@
 }
 
 .stat__value {
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: 400;
   letter-spacing: -1px;
   color: var(--ink);
@@ -146,7 +146,7 @@
 
 .stat__caption {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.4;
   text-align: center;
   white-space: pre-line;
@@ -155,17 +155,17 @@
 
 .stats__cta {
   grid-column: 1 / -1;
-  margin-top: 7px;
+  margin-top: 0.4375rem;
 }
 
 .stats__right {
   min-width: 0;
-  padding-top: 6px;
+  padding-top: 0.375rem;
 }
 
 .stats__lead {
-  margin: 0 0 28px;
-  font-size: 18px;
+  margin: 0 0 1.75rem;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--ink-2);
 }
@@ -179,19 +179,19 @@
 .suggestion {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 18px;
+  gap: 0.75rem;
+  font-size: 1.125rem;
   line-height: 1.45;
   color: var(--ink-2);
 }
 
 .suggestion + .suggestion {
-  margin-top: 22px;
+  margin-top: 1.375rem;
 }
 
 .suggestion__icon {
   flex: 0 0 auto;
-  font-size: 21px;
+  font-size: 1.3125rem;
   margin-top: 2px;
   color: var(--green-accent);
   font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
@@ -202,13 +202,13 @@
 .gifts {
   display: flex;
   flex-direction: column;
-  min-height: 300px;
-  padding: 26px 23px 14px;
+  min-height: 18.75rem;
+  padding: 1.625rem 1.4375rem 0.875rem;
 }
 
 .gifts__list {
   list-style: none;
-  margin: 25px 0 0;
+  margin: 1.5625rem 0 0;
   padding: 0;
   flex: 1;
 }
@@ -216,31 +216,31 @@
 .gift {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 0.875rem;
 }
 
 .gift + .gift {
-  margin-top: 24px;
+  margin-top: 1.5rem;
 }
 
 .gift__dot {
-  flex: 0 0 10px;
-  width: 10px;
-  height: 10px;
-  margin-top: 8px;
+  flex: 0 0 0.625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-top: 0.5rem;
   border-radius: 50%;
   background: var(--green-dot);
 }
 
 .gift__title {
-  margin: 0 0 4px;
-  font-size: 18px;
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
   color: var(--ink);
 }
 
 .gift__meta {
   margin: 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--ink-muted);
 }
 
@@ -248,27 +248,27 @@
 
 .notes {
   position: relative;
-  min-height: 300px;
-  padding: 26px 23px 100px;
+  min-height: 18.75rem;
+  padding: 1.625rem 1.4375rem 6.25rem;
 }
 
 .notes__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 262px));
-  gap: 26px;
-  margin-top: 28px;
+  grid-template-columns: repeat(2, minmax(0, 16.375rem));
+  gap: 1.625rem;
+  margin-top: 1.75rem;
 }
 
 .note {
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 22px 24px;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.375rem 1.5rem;
   background: var(--surface);
 }
 
 .note__title {
-  margin: 0 0 16px;
-  font-size: 20px;
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.35;
   color: var(--ink);
@@ -276,21 +276,21 @@
 
 .note__body {
   margin: 0;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.55;
   color: var(--ink-muted);
 }
 
 .note__label {
-  margin: 0 0 14px;
-  font-size: 17px;
+  margin: 0 0 0.875rem;
+  font-size: 1.0625rem;
   color: var(--ink-muted);
 }
 
 .note__links {
   margin: 0;
-  padding-left: 20px;
-  font-size: 17px;
+  padding-left: 1.25rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
 }
 
@@ -301,6 +301,54 @@
 
 .notes__new {
   position: absolute;
-  right: 23px;
-  bottom: 24px;
+  right: 1.4375rem;
+  bottom: 1.5rem;
+}
+
+/* --------------------------------- phone --------------------------------- */
+
+@media (max-width: 767px) {
+  .dashboard__greeting {
+    margin-bottom: 22px;
+    font-size: 26px;
+  }
+
+  /* The rings sit beside a column of suggestions on desktop; at this width the
+     two regions are stacked so neither gets squeezed to one word per line. */
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    row-gap: 18px;
+    min-height: 0;
+    padding: 20px 16px 16px;
+  }
+
+  .stats__rings {
+    padding-top: 4px;
+  }
+
+  .stat__ring {
+    width: 108px;
+    height: 108px;
+    flex: 0 0 108px;
+  }
+
+  .stat__value {
+    font-size: 30px;
+  }
+
+  .stat__caption {
+    font-size: 13px;
+  }
+
+  .appointments {
+    min-height: 0;
+    padding: 20px 16px 12px;
+  }
+
+  .appointments__actions,
+  .gifts__actions {
+    margin: 20px 0 0;
+    flex-wrap: wrap;
+  }
 }

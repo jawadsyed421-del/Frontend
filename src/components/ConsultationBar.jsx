@@ -10,9 +10,14 @@ export default function ConsultationBar({ elapsed = '1:37', back, onBack, onFini
   return (
     <div className="cbar">
       {back ? (
-        <button className="cbar__back" type="button" onClick={onBack}>
+        <button
+          className="cbar__back"
+          type="button"
+          onClick={onBack}
+          aria-label="Volver al módulo de consulta"
+        >
           <Icon name="undo" />
-          Volver al módulo de consulta
+          <span className="cbar__back-label">Volver al módulo de consulta</span>
         </button>
       ) : (
         <span />

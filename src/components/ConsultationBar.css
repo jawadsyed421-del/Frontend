@@ -4,25 +4,25 @@
   right: 0;
   bottom: 0;
   z-index: 60;
-  height: 72px;
+  height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 46px 0 46px;
+  padding: 0 2.875rem 0 2.875rem;
   background: var(--surface);
   border-top: 1px solid var(--border);
-  box-shadow: 0 -2px 16px rgba(16, 17, 20, 0.06);
+  box-shadow: 0 -2px 1rem rgba(16, 17, 20, 0.06);
 }
 
 .cbar__back {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  height: 46px;
-  padding: 0 22px;
-  border-radius: 10px;
+  gap: 0.75rem;
+  height: 2.875rem;
+  padding: 0 1.375rem;
+  border-radius: 0.625rem;
   background: #f1f3f6;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--ink-2);
   transition: background-color 0.15s ease;
 }
@@ -32,19 +32,19 @@
 }
 
 .cbar__back .material-symbols-rounded {
-  font-size: 21px;
+  font-size: 1.3125rem;
   font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
 }
 
 .cbar__right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 1.125rem;
 }
 
 .cbar__label {
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.35;
   text-align: right;
   color: var(--ink-muted);
@@ -52,28 +52,79 @@
 
 .cbar__time {
   margin: 0;
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 400;
   color: var(--blue);
 }
 
 .cbar__sep {
   width: 1px;
-  height: 38px;
+  height: 2.375rem;
   background: var(--border);
 }
 
 .cbar__finish {
-  height: 50px;
-  padding: 0 26px;
-  border-radius: 10px;
+  height: 3.125rem;
+  padding: 0 1.625rem;
+  border-radius: 0.625rem;
   background: var(--blue);
   color: #fff;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
   transition: background-color 0.15s ease;
 }
 
 .cbar__finish:hover {
   background: var(--blue-hover);
+}
+
+/* --------------------------------- phone --------------------------------- */
+
+@media (max-width: 767px) {
+  .cbar {
+    height: auto;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    gap: 10px;
+  }
+
+  /* Both labels stay in the accessibility tree; there is simply no room to
+     draw them beside the timer and the finish action. */
+  .cbar__back-label,
+  .cbar__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .cbar__back {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    border-radius: 50%;
+    background: #eff1f4;
+    gap: 0;
+  }
+
+  .cbar__right {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .cbar__time {
+    font-size: 17px;
+  }
+
+  .cbar__finish {
+    height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
 }

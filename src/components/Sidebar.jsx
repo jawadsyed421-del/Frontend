@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import Icon from './Icon'
+import { useNav, useRegisterNav } from './nav-drawer'
 import './Sidebar.css'
 
 /** Full navigation (PNG frames 1–9, PDF pages 91–148). */
@@ -28,43 +29,58 @@ export const NAV_COMPACT = [
 ]
 
 export default function Sidebar({ items = NAV_FULL, badges, offline = false }) {
-  return (
-    <nav className="sidebar" aria-label="Navegación principal">
-      <ul className="sidebar__list">
-        {items.map((item) => {
-          const badge = badges?.[item.to]
-          return (
-            <li key={item.to}>
-              <NavLink
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) =>
-                  `sidebar__item${isActive ? ' is-active' : ''}${badge ? ' has-badge' : ''}`
-                }
-              >
-                <Icon name={item.icon} className="sidebar__icon" />
-                <span className="sidebar__text">
-                  <span className="sidebar__label">{item.label}</span>
-                  {badge && (
-                    <span className="sidebar__badge">
-                      <span className="sidebar__dot" aria-hidden="true" />
-                      {badge}
-                    </span>
-                  )}
-                </span>
-              </NavLink>
-            </li>
-          )
-        })}
-      </ul>
+  const { open, setOpen } = useNav()
+  useRegisterNav()
 
-      {offline && (
-        <p className="sidebar__offline">
-          <Icon name="wifi_off" />
-          No estás conectado
-          <br />a internet
-        </p>
-      )}
-    </nav>
+  return (
+    <>
+      {/* Phone only: tapping away from the open drawer closes it. */}
+      <div
+        className={`nav-scrim${open ? ' is-open' : ''}`}
+        onMouseDown={() => setOpen(false)}
+        aria-hidden="true"
+      />
+
+      <nav
+        className={`sidebar${open ? ' is-open' : ''}`}
+        aria-label="Navegación principal"
+      >
+        <ul className="sidebar__list">
+          {items.map((item) => {
+            const badge = badges?.[item.to]
+            return (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  end={item.end}
+                  className={({ isActive }) =>
+                    `sidebar__item${isActive ? ' is-active' : ''}${badge ? ' has-badge' : ''}`
+                  }
+                >
+                  <Icon name={item.icon} className="sidebar__icon" />
+                  <span className="sidebar__text">
+                    <span className="sidebar__label">{item.label}</span>
+                    {badge && (
+                      <span className="sidebar__badge">
+                        <span className="sidebar__dot" aria-hidden="true" />
+                        {badge}
+                      </span>
+                    )}
+                  </span>
+                </NavLink>
+              </li>
+            )
+          })}
+        </ul>
+
+        {offline && (
+          <p className="sidebar__offline">
+            <Icon name="wifi_off" />
+            No estás conectado
+              <br />a internet
+          </p>
+        )}
+      </nav>
+    </>
   )
 }

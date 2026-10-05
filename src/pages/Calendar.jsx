@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Icon from '../components/Icon'
 import Topbar from '../components/Topbar'
@@ -32,11 +32,14 @@ const TITLES = {
   ano: 'Año 2021',
 }
 
-const HOUR_PX = 62
+/* One hour of the time grid, in rem so the calendar scales with the frame
+   (62px at the 1728px design width). */
+const HOUR = 62 / 16
+const rem = (n) => `${n}rem`
 
 /* ------------------------------ shared bits ------------------------------ */
 
-function MiniMonth() {
+function MiniMonthBase() {
   const [first, length] = YEAR_2021[3] // April 2021
   const cells = []
   for (let i = 0; i < first; i += 1) cells.push({ n: 31 - first + i + 1, muted: true })
@@ -82,7 +85,7 @@ function TimeGrid({ columns = 1, children }) {
     <div className="grid">
       <div className="grid__gutter">
         {HOURS.map((h) => (
-          <span className="grid__hour" key={h} style={{ height: HOUR_PX }}>
+          <span className="grid__hour" key={h} style={{ height: rem(HOUR) }}>
             {h}
           </span>
         ))}
@@ -94,7 +97,7 @@ function TimeGrid({ columns = 1, children }) {
         {Array.from({ length: columns }, (_, c) => (
           <div className="grid__col" key={c}>
             {HOURS.map((h) => (
-              <div className="grid__slot" key={h} style={{ height: HOUR_PX }} />
+              <div className="grid__slot" key={h} style={{ height: rem(HOUR) }} />
             ))}
           </div>
         ))}
@@ -106,7 +109,7 @@ function TimeGrid({ columns = 1, children }) {
 
 /* -------------------------------- day view ------------------------------- */
 
-function DayView({ onOpenEvent, dimmed }) {
+function DayViewBase({ onOpenEvent, dimmed }) {
   return (
     <>
       <div className="dayhead">
@@ -121,10 +124,10 @@ function DayView({ onOpenEvent, dimmed }) {
             className={`event${dimmed ? ' is-dim' : ''}`}
             aria-describedby={`event-tip-${ev.id}`}
             style={{
-              top: ev.start * HOUR_PX,
-              height: (ev.end - ev.start) * HOUR_PX - 4,
-              left: `calc(${(100 * ev.lane) / ev.lanes}% + 3px)`,
-              width: `calc(${(100 * (ev.span || 1)) / ev.lanes}% - 6px)`,
+              top: rem(ev.start * HOUR),
+              height: rem((ev.end - ev.start) * HOUR - 0.25),
+              left: `calc(${(100 * ev.lane) / ev.lanes}% + 0.1875rem)`,
+              width: `calc(${(100 * (ev.span || 1)) / ev.lanes}% - 0.375rem)`,
               background: ev.color,
             }}
             onClick={() => onOpenEvent(ev)}
@@ -155,7 +158,7 @@ function DayView({ onOpenEvent, dimmed }) {
 
 /* ------------------------------- week view ------------------------------- */
 
-function WeekView() {
+function WeekViewBase() {
   const days = [19, 20, 21, 22, 23, 24, 25]
   const colW = 100 / 7
 
@@ -178,12 +181,12 @@ function WeekView() {
               key={ev.id}
               className="wevent"
               style={{
-                top: ev.start * HOUR_PX,
-                height: (ev.end - ev.start) * HOUR_PX - 4,
+                top: rem(ev.start * HOUR),
+                height: rem((ev.end - ev.start) * HOUR - 0.25),
                 left: narrow
-                  ? `calc(${ev.day * colW}% + ${4 + ev.narrow * 30}px)`
-                  : `calc(${ev.day * colW}% + 4px)`,
-                width: narrow ? 28 : `calc(${colW}% - 8px)`,
+                  ? `calc(${ev.day * colW}% + ${(4 + ev.narrow * 30) / 16}rem)`
+                  : `calc(${ev.day * colW}% + 0.25rem)`,
+                width: narrow ? '1.75rem' : `calc(${colW}% - 0.5rem)`,
                 background: ev.color,
               }}
             >
@@ -199,7 +202,7 @@ function WeekView() {
 
 /* ------------------------------- month view ------------------------------ */
 
-function MonthView() {
+function MonthViewBase() {
   const [first, length] = YEAR_2021[3]
   const cells = []
   for (let i = 0; i < first; i += 1)
@@ -248,7 +251,7 @@ function MonthView() {
 
 /* -------------------------------- year view ------------------------------ */
 
-function YearMonth({ index }) {
+function YearMonthBase({ index }) {
   const [first, length] = YEAR_2021[index]
   const prevLength = YEAR_2021[(index + 11) % 12][1]
   const cells = []
@@ -281,7 +284,7 @@ function YearMonth({ index }) {
   )
 }
 
-function YearView() {
+function YearViewBase() {
   return (
     <div className="year">
       {MONTHS.map((_, i) => (
@@ -341,6 +344,17 @@ function EventPanel({ onClose, onDelete, dim }) {
 }
 
 /* --------------------------------- page ---------------------------------- */
+
+/* The views below are pure functions of their props, and the page's state is
+   coarse — opening the date picker or an event panel re-renders the whole
+   calendar. Memoising them keeps a panel toggle from rebuilding the year grid
+   (twelve months, ~500 day buttons) on every click. */
+const MiniMonth = memo(MiniMonthBase)
+const DayView = memo(DayViewBase)
+const WeekView = memo(WeekViewBase)
+const MonthView = memo(MonthViewBase)
+const YearMonth = memo(YearMonthBase)
+const YearView = memo(YearViewBase)
 
 export default function Calendar() {
   const navigate = useNavigate()
@@ -418,7 +432,13 @@ export default function Calendar() {
             {picker && <MiniMonth />}
           </div>
 
-          <div className={`cal__body${view === 'mes' ? ' cal__body--flush' : ''}`}>
+          {/* The view modifier lets the phone styles scroll the week and month
+              grids sideways without touching the day and year layouts. */}
+          <div
+            className={`cal__body cal__body--${view}${
+              view === 'mes' ? ' cal__body--flush' : ''
+            }`}
+          >
             {view === 'semana' ? (
               <WeekView />
             ) : view === 'mes' ? (

@@ -4,7 +4,7 @@
   z-index: 120;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 1.5rem;
   background: rgba(32, 33, 36, 0.72);
 }
 
@@ -15,14 +15,14 @@
 
 .dlg {
   background: var(--surface);
-  border-radius: 10px;
-  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.3);
+  border-radius: 0.625rem;
+  box-shadow: 0 1.625rem 5rem rgba(0, 0, 0, 0.3);
 }
 
 .dlg__head {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .dlg__title {
@@ -31,9 +31,9 @@
 }
 
 .dlg__close {
-  flex: 0 0 34px;
-  width: 34px;
-  height: 34px;
+  flex: 0 0 2.125rem;
+  width: 2.125rem;
+  height: 2.125rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -47,36 +47,36 @@
 }
 
 .dlg__close .material-symbols-rounded {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
 }
 
 .dlg__actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 /* ---- confirm: narrow, centred heading ---- */
 
 .dlg--confirm {
-  width: 712px;
+  width: 44.5rem;
   border: 1px solid var(--border);
-  box-shadow: 0 18px 50px rgba(16, 17, 20, 0.16);
-  padding: 26px 30px 28px;
+  box-shadow: 0 1.125rem 3.125rem rgba(16, 17, 20, 0.16);
+  padding: 1.625rem 1.875rem 1.75rem;
 }
 
 .dlg--confirm .dlg__title {
   flex: 1;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
   text-align: center;
-  padding-left: 34px;
+  padding-left: 2.125rem;
 }
 
 .dlg--confirm .dlg__body {
-  margin: 20px 0 30px;
-  font-size: 17px;
+  margin: 1.25rem 0 1.875rem;
+  font-size: 1.0625rem;
   line-height: 1.55;
   color: var(--ink-2);
 }
@@ -84,26 +84,26 @@
 /* ---- panel: wider, left-aligned ---- */
 
 .dlg--panel {
-  width: 798px;
-  padding: 44px 44px 42px;
+  width: 49.875rem;
+  padding: 2.75rem 2.75rem 2.625rem;
 }
 
 .dlg--panel .dlg__title {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.2px;
 }
 
 .dlg--panel .dlg__body {
-  margin: 26px 0 0;
-  font-size: 17px;
+  margin: 1.625rem 0 0;
+  font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--ink-2);
 }
 
 .dlg--panel .dlg__body p {
-  margin: 0 0 18px;
+  margin: 0 0 1.125rem;
 }
 
 .dlg--panel .dlg__body p:last-child {
@@ -111,17 +111,17 @@
 }
 
 .dlg--panel .dlg__actions {
-  margin-top: 40px;
+  margin-top: 2.5rem;
 }
 
 /* ---- dialog buttons ---- */
 
 .dlg-btn {
-  height: 46px;
-  min-width: 116px;
-  padding: 0 22px;
-  border-radius: 8px;
-  font-size: 17px;
+  height: 2.875rem;
+  min-width: 7.25rem;
+  padding: 0 1.375rem;
+  border-radius: 0.5rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   transition: background-color 0.15s ease;
 }
@@ -152,18 +152,34 @@
 
 .dlg-btn--block {
   width: 100%;
-  height: 54px;
-  font-size: 18px;
-  border-radius: 8px;
+  height: 3.375rem;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
 }
 
 .dlg-link {
   display: block;
   width: 100%;
-  margin-top: 20px;
-  font-size: 17px;
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   color: var(--ink);
   text-align: center;
   text-decoration: underline;
+}
+
+/* --------------------------------- phone --------------------------------- */
+
+@media (max-width: 767px) {
+  .dlg,
+  .dlg--confirm,
+  .dlg--panel {
+    width: auto;
+    max-width: calc(100vw - 24px);
+    padding: 18px 16px 20px;
+  }
+
+  .dlg__title {
+    font-size: 17px;
+  }
 }

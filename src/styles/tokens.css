@@ -24,17 +24,47 @@
   --ink-muted: #6f757a;
   --ink-faint: #9aa0a6;
 
-  /* Metrics (design frame is 1728px wide) */
-  --sidebar-w: 315px;
-  --topbar-h: 69px;
-  --gutter: 68px;
-  --card-gap: 31px;
-  --radius-card: 14px;
-  --radius-control: 10px;
+  /* Metrics. Design frame is 1728px wide; 1rem == 16px there (see html rule). */
+  --sidebar-w: 19.6875rem;
+  --topbar-h: 4.3125rem;
+  --gutter: 4.25rem;
+  --card-gap: 1.9375rem;
+  --radius-card: 0.875rem;
+  --radius-control: 0.625rem;
 
   --shadow-card: 0 1px 2px rgba(16, 17, 20, 0.04);
-  --shadow-float: 0 8px 28px rgba(16, 17, 20, 0.12);
+  --shadow-float: 0 0.5rem 1.75rem rgba(16, 17, 20, 0.12);
 
   --font: 'DM Sans', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
+
+  /* Motion. One ramp for everything so the UI feels like a single surface. */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 120ms;
+  --t-base: 190ms;
+  --t-slow: 320ms;
+}
+
+/* ---------------------------------------------------------------------------
+   Fluid frame.
+
+   Every length in this app is written in rem against a 1728px-wide design
+   frame where 1rem == 16px. Scaling the root font-size by the viewport scales
+   the whole frame proportionally, so a 1440px laptop sees the same layout at
+   83% rather than a 1728px layout crammed into 1440px — which is what made the
+   screens read as "zoomed in".
+
+     16 / 1728 = 0.9259vw
+
+   The clamp is expressed in rem (not px) so a person who raised their browser's
+   default font size still gets a correspondingly larger UI.
+
+     - above 1728px  -> capped at 1rem, the design size; it stops growing
+     - 1188–1728px   -> scales linearly, pixel-proportional to the design
+     - below 1188px  -> floors at 11px and the breakpoints in global.css take
+                        over (icon rail, stacked cards)
+--------------------------------------------------------------------------- */
+html {
+  font-size: clamp(0.6875rem, 0.9259vw, 1rem);
 }

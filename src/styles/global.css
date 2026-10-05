@@ -12,6 +12,13 @@ body,
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* The frame scales with the viewport, so sub-pixel glyph positions are the
+     norm; let the browser keep them instead of snapping to whole pixels. */
+  text-rendering: optimizeLegibility;
+}
+
 body {
   margin: 0;
   font-family: var(--font);
@@ -63,7 +70,7 @@ textarea {
 
 .card-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.2px;
   color: var(--ink);
@@ -74,11 +81,11 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  height: 50px;
-  padding: 0 24px;
+  gap: 0.625rem;
+  height: 3.125rem;
+  padding: 0 1.5rem;
   border-radius: var(--radius-control);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
   white-space: nowrap;
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -95,8 +102,8 @@ textarea {
 .btn--ghost {
   background: transparent;
   color: var(--ink-2);
-  padding: 0 14px;
-  gap: 8px;
+  padding: 0 0.875rem;
+  gap: 0.5rem;
 }
 .btn--ghost:hover {
   background: #f2f4f7;
@@ -112,14 +119,14 @@ textarea {
 }
 
 .btn .material-symbols-rounded {
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 
 /* --- shared radio (modal + consultation module) --- */
 .radio {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
+  gap: 1.125rem;
   cursor: pointer;
 }
 
@@ -130,9 +137,9 @@ textarea {
 }
 
 .radio__dot {
-  flex: 0 0 26px;
-  width: 26px;
-  height: 26px;
+  flex: 0 0 1.625rem;
+  width: 1.625rem;
+  height: 1.625rem;
   margin-top: 1px;
   border: 2px solid #3c4043;
   border-radius: 50%;
@@ -143,7 +150,7 @@ textarea {
 }
 
 .radio__dot .material-symbols-rounded {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
 }
 
@@ -154,7 +161,7 @@ textarea {
 }
 
 .radio__label {
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.55;
   color: var(--ink-2);
 }
@@ -178,7 +185,7 @@ textarea {
   min-width: 0;
   overflow-y: auto;
   background: var(--page);
-  padding: 46px var(--gutter) 70px;
+  padding: 2.875rem var(--gutter) 4.375rem;
 }
 
 /* --- route chunk fallback & stub pages --- */
@@ -190,7 +197,450 @@ textarea {
 
 .placeholder__title {
   margin: 0;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 500;
   letter-spacing: -0.6px;
+}
+
+
+/* ===========================================================================
+   Motion and polish
+   =========================================================================== */
+
+/* --- scrollbars: slim, and only inked while the area is used --- */
+.shell__main,
+.sidebar,
+.v2,
+[class*='__scroll'] {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color var(--t-slow) var(--ease);
+}
+
+.shell__main:hover,
+.sidebar:hover,
+.v2:hover,
+[class*='__scroll']:hover {
+  scrollbar-color: #c7ccd3 transparent;
+}
+
+.shell__main::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar,
+.v2::-webkit-scrollbar,
+[class*='__scroll']::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.shell__main::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb,
+.v2::-webkit-scrollbar-thumb,
+[class*='__scroll']::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+  background-color: transparent;
+  transition: background-color var(--t-slow) var(--ease);
+}
+
+.shell__main:hover::-webkit-scrollbar-thumb,
+.sidebar:hover::-webkit-scrollbar-thumb,
+.v2:hover::-webkit-scrollbar-thumb,
+[class*='__scroll']:hover::-webkit-scrollbar-thumb {
+  background-color: #c7ccd3;
+}
+
+.shell__main::-webkit-scrollbar-thumb:hover,
+.v2::-webkit-scrollbar-thumb:hover {
+  background-color: #aab1ba;
+}
+
+/* --- a single keyboard focus treatment across the app --- */
+:focus-visible {
+  outline: 2px solid var(--blue-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background: var(--blue-soft);
+  color: var(--ink);
+}
+
+/* --- interactive feedback: every control eases, and gives under the cursor --- */
+button,
+a,
+.card,
+.radio,
+input,
+textarea,
+select {
+  transition: background-color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease),
+    box-shadow var(--t-base) var(--ease), transform var(--t-fast) var(--ease),
+    opacity var(--t-fast) var(--ease);
+}
+
+.btn:active,
+.v2btn:active,
+.topbar__icon-btn:active {
+  transform: scale(0.975);
+}
+
+.btn--primary:hover,
+.v2btn--primary:hover {
+  box-shadow: 0 0.25rem 0.875rem rgba(0, 118, 255, 0.28);
+}
+
+/* --- overlays: scrims fade, the surface they carry rises into place ---------
+   Written once here against every overlay root in the app, so a dialog, the
+   calendar's detail panel, the note editor and the appointment toast all
+   arrive the same way. Specificity is doubled for the same cascade-order
+   reason as the breakpoints below. ---------------------------------------- */
+.dlg-scrim.dlg-scrim,
+.modal-scrim.modal-scrim,
+.ned-scrim.ned-scrim,
+.panel-scrim.panel-scrim {
+  animation: scrim-in var(--t-base) var(--ease) both;
+}
+
+.dlg-scrim .dlg,
+.modal-scrim .modal,
+.ned-scrim .ned,
+.panel-scrim .panel,
+.panel-scrim .comment,
+.panel-scrim .toastbox,
+.minical {
+  animation: pop-in var(--t-base) var(--ease-out) both;
+}
+
+.appt-toast.appt-toast {
+  animation: toast-in var(--t-slow) var(--ease-out) both;
+}
+
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5rem, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -0.75rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- route transitions ------------------------------------------------------
+   Each route mounts behind a keyed wrapper (see App.jsx), so changing screens
+   plays a short rise-and-fade instead of swapping instantly. --------------- */
+.route {
+  height: 100%;
+  animation: route-in var(--t-slow) var(--ease-out) both;
+}
+
+@keyframes route-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The lazy-chunk fallback: a calm hold, not a white flash. */
+.route-fallback {
+  min-height: 100%;
+  background: var(--surface);
+  animation: fallback-in 420ms var(--ease) both;
+}
+
+@keyframes fallback-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn:active,
+  .v2btn:active,
+  .topbar__icon-btn:active {
+    transform: none;
+  }
+}
+
+/* ===========================================================================
+   Below the fluid range (< 1188px) the root font-size stops shrinking, so the
+   layout itself has to give: the nav collapses to an icon rail, then the
+   two-column boards stack.
+   =========================================================================== */
+
+/* ===========================================================================
+   Responsive tiers
+
+     desktop  >= 1181px   the 1728px frame, scaled fluidly (see tokens.css)
+     tablet   768–1180px  nav collapses to an icon rail, boards stack
+     phone    <= 767px    nav becomes a drawer, everything is one column
+
+   Each page's stylesheet is imported by its own (lazily loaded) module, so it
+   lands after this file in the cascade. These overrides therefore carry an
+   extra class of specificity — otherwise load order would decide, and it is
+   not the same in dev and in a production build.
+   =========================================================================== */
+
+/* The drawer button and its scrim exist only on phones. */
+.topbar__menu {
+  display: none;
+  width: 2.625rem;
+  height: 2.625rem;
+  margin-right: 0.25rem;
+  border-radius: 50%;
+  place-items: center;
+  color: var(--ink);
+  flex: 0 0 auto;
+}
+
+.topbar__menu .material-symbols-rounded {
+  font-size: 1.625rem;
+}
+
+.topbar__menu:hover {
+  background: #f1f3f5;
+}
+
+.nav-scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(16, 17, 20, 0.42);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-base) var(--ease);
+}
+
+/* --------------------------------- tablet -------------------------------- */
+
+@media (max-width: 1180px) {
+  /* Below the fluid range rem is frozen at 11px, so the rail is sized in px
+     to keep the targets comfortable rather than shrinking with the type. */
+  .sidebar.sidebar {
+    width: 64px;
+    flex: 0 0 64px;
+    padding: 20px 8px;
+    overflow: visible;
+  }
+
+  .sidebar.sidebar .sidebar__item {
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .sidebar.sidebar .sidebar__icon {
+    font-size: 23px;
+  }
+
+  .sidebar.sidebar .sidebar__list li + li {
+    margin-top: 4px;
+  }
+
+  /* Kept in the accessibility tree — only taken out of the picture. */
+  .sidebar.sidebar .sidebar__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .sidebar.sidebar .sidebar__item.has-badge {
+    position: relative;
+    height: 44px;
+  }
+
+  /* The badge survives the collapse as a dot on the icon. */
+  .sidebar.sidebar .sidebar__item.has-badge::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    right: 11px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .sidebar.sidebar .sidebar__offline {
+    margin: auto 0 20px;
+    font-size: 0;
+    gap: 0;
+  }
+
+  .sidebar.sidebar .sidebar__offline .material-symbols-rounded {
+    font-size: 22px;
+  }
+
+  .shell .shell__main {
+    padding: 2.25rem 2.5rem 3.5rem;
+  }
+
+  .v2 .v2__inner {
+    padding: 2.25rem 2.5rem 3.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .shell__main.dashboard .dashboard__grid,
+  .v2 .v2__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The primary action fills its column in the two-up layout; once the board
+     stacks, a full-bleed button reads as a banner, so let it size to content. */
+  .v2 .agenda__actions .v2btn--primary {
+    flex: 0 1 auto;
+  }
+}
+
+/* --------------------------------- phone --------------------------------- */
+
+@media (max-width: 767px) {
+  .topbar__menu {
+    display: grid;
+  }
+
+  .nav-scrim {
+    display: block;
+  }
+
+  .nav-scrim.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* The rail leaves the flow and becomes a drawer with its labels back. */
+  .sidebar.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    width: 272px;
+    max-width: 82vw;
+    flex: 0 0 auto;
+    padding: 16px 10px;
+    overflow-y: auto;
+    box-shadow: 0 0 40px rgba(16, 17, 20, 0.18);
+    transform: translateX(-100%);
+    transition: transform var(--t-slow) var(--ease-out);
+  }
+
+  .sidebar.sidebar.is-open {
+    transform: none;
+  }
+
+  .sidebar.sidebar .sidebar__item,
+  .sidebar.sidebar .sidebar__item.has-badge {
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 16px;
+    height: 48px;
+  }
+
+  /* Labels come back, so the collapsed badge dot is no longer needed. */
+  .sidebar.sidebar .sidebar__text {
+    position: static;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .sidebar.sidebar .sidebar__item.has-badge::after {
+    content: none;
+  }
+
+  .sidebar.sidebar .sidebar__offline {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  /* The drawer is out of flow at this width, so the only thing still sitting
+     beside the content is a page-level rail (the expediente's sections). Those
+     stack above it instead of competing for the width. */
+  .shell .shell__body {
+    flex-direction: column;
+  }
+
+  .shell .shell__main,
+  .v2 .v2__inner {
+    padding: 20px 16px 40px;
+  }
+
+  .shell .topbar {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .shell .topbar__actions {
+    gap: 4px;
+  }
+
+  /* Touch targets stay finger-sized once rem has stopped scaling. */
+  .shell .btn,
+  .shell .v2btn {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar.sidebar {
+    transition: none;
+  }
 }

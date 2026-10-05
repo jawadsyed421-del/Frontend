@@ -48,14 +48,87 @@ one the landing route.
 The two interstitials auto-advance after 2.2s; append `?hold=1` to freeze one.
 The remaining sidebar destinations render a stub — the sources don't cover them.
 
+## Scaling
+
+The prototype is drawn on a 1728px-wide frame. Every length in the app is
+written in **rem against that frame**, where `1rem == 16px`, and the root
+font-size is scaled by the viewport:
+
+```css
+html { font-size: clamp(0.6875rem, 0.9259vw, 1rem); }  /* 16 / 1728 = 0.9259vw */
+```
+
+So the whole design scales as one piece instead of a 1728px layout being
+crammed into a smaller window — which is what made the screens read as zoomed
+in. A 1440px laptop renders the frame at 83%: same proportions, everything on
+screen. Above 1728px it stops growing and the `fr` columns take up the slack.
+The clamp is in rem, not px, so a raised browser default font size still
+scales the UI up.
+
+Below 1188px the root font-size floors and **layout** takes over. There are
+three tiers, all defined in `src/styles/global.css` plus a block at the foot of
+each page's own stylesheet:
+
+| Tier | Width | Behaviour |
+| --- | --- | --- |
+| Desktop | ≥ 1181px | full sidebar; the 1728px frame, scaled |
+| Tablet | 768–1180px | sidebar collapses to a 64px icon rail (labels stay in the a11y tree, badges become dots); two-column boards stack at ≤1000px; the calendar toolbar and the expediente tab strip wrap or scroll |
+| Phone | ≤ 767px | the rail leaves the flow and becomes a **drawer** opened from a menu button in the topbar; everything is one column |
+
+### The phone drawer
+
+`src/components/nav-drawer.jsx` holds the open state in a context, because the
+button that opens the drawer lives in the `Topbar` while the nav it opens is a
+sibling further down the tree — and not every screen has one. A nav registers
+itself on mount, so the menu button only appears when there is something to
+open (the consultation module has no nav, and grows no button). The drawer
+closes on navigation, on Escape and on a tap outside, and the page behind it
+holds still while it is open.
+
+A screen's **own** rail is not app-level navigation and so does not go in the
+drawer: the expediente's section rail becomes a horizontal scrolling strip
+above the content instead, and `.shell__body` stacks to make room for it.
+
+Grids that cannot compress — the calendar's week and month views — keep a
+usable column width and scroll sideways rather than crushing seven columns
+into 390px. The header row and the grid share `.cal__body` as their scroll
+container so they stay aligned.
+
+Those overrides carry an extra class of specificity on purpose: each page's CSS
+is imported by its own lazily-loaded module, so it lands *after* `global.css`
+in the cascade and load order is not the same in dev and in a build.
+
+**When adding styles, write rem, not px** — a px value will not scale with the
+rest of the frame. Hairlines (borders, 1–3px offsets) are deliberately left in
+px so they stay crisp.
+
 ## Performance
 
 - **Icon font subsetted** to the ~86 symbols actually used
   (`icon_names=` in `index.html`): **1783 KB → 23 KB**, a 98.7% cut. Add the
   name there when you introduce a new icon, or it will render as its ligature text.
-- **Routes are code-split** — only the opened screen downloads. First load is
-  182 KB JS + 11 KB CSS; each screen adds 1–12 KB.
+- **Routes are code-split** — only the opened screen downloads. Each screen
+  adds 1–13 KB.
+- **React, ReactDOM and the router are a separate chunk** (`manualChunks` in
+  `vite.config.js`). The app entry is 18 KB against a 164 KB vendor chunk, so a
+  UI change ships a small diff and leaves the vendor chunk in cache.
+- **The calendar's views are memoised.** Page state there is coarse — opening
+  the date picker or a detail panel re-renders the screen — so `memo` keeps a
+  single click from rebuilding the year grid (twelve months, ~500 day buttons).
 - `Untitled.pdf` (219 MB) is gitignored; it is a design source, not an asset.
+
+## Motion
+
+Durations and easing live as tokens in `src/styles/tokens.css`; the rules are in
+`global.css`, so screens stay consistent without each one restating them:
+
+- route changes play a short rise-and-fade (`App.jsx` keys the wrapper on the path)
+- every overlay — dialog, calendar detail panel, note editor, toast — shares one
+  scrim-fade plus surface-rise entrance
+- controls ease on hover and give slightly on press; one `:focus-visible` ring
+  across the app
+- scrollbars are slim and only ink while their area is in use
+- all of it collapses under `prefers-reduced-motion: reduce`
 
 ## Fidelity notes
 

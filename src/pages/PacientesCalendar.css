@@ -12,32 +12,32 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 22px 40px 22px 32px;
+  gap: 1.125rem;
+  padding: 1.375rem 2.5rem 1.375rem 2rem;
 }
 
 /* On the search-results screen the arrow + field line up with the results
    card rather than the viewport edge (PDF page 141). */
 .pcal__bar--centered .pcal__lead {
-  width: 795px;
+  width: 49.6875rem;
   margin: 0 auto;
 }
 
 .pcal__bar--centered .pcal__add {
   position: absolute;
-  right: 40px;
+  right: 2.5rem;
 }
 
 .pcal__lead {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 1.125rem;
 }
 
 .pcal__back {
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -49,24 +49,24 @@
 }
 
 .pcal__back .material-symbols-rounded {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 .pcal__search {
   display: flex;
   align-items: center;
-  gap: 12px;
-  width: 546px;
+  gap: 0.75rem;
+  width: 34.125rem;
   max-width: 100%;
-  height: 48px;
-  padding: 0 20px;
-  border-radius: 24px;
+  height: 3rem;
+  padding: 0 1.25rem;
+  border-radius: 1.5rem;
   background: #f1f3f6;
 }
 
 .pcal__search .material-symbols-rounded {
-  font-size: 21px;
+  font-size: 1.3125rem;
   color: var(--ink-2);
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
@@ -77,18 +77,18 @@
   border: 0;
   outline: none;
   background: none;
-  font-size: 17px;
+  font-size: 1.0625rem;
   color: var(--ink-2);
 }
 
 .pcal__add {
   margin-left: auto;
-  height: 49px;
-  padding: 0 26px;
-  border-radius: 8px;
+  height: 3.0625rem;
+  padding: 0 1.625rem;
+  border-radius: 0.5rem;
   background: var(--blue);
   color: #fff;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
   white-space: nowrap;
   transition: background-color 0.15s ease;
@@ -103,21 +103,21 @@
 .pcal__body {
   display: flex;
   justify-content: center;
-  padding: 46px 40px 70px;
+  padding: 2.875rem 2.5rem 4.375rem;
 }
 
 .pcard {
-  width: 795px;
+  width: 49.6875rem;
   max-width: 100%;
-  padding: 26px 30px 22px;
+  padding: 1.625rem 1.875rem 1.375rem;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   box-shadow: var(--shadow-card);
 }
 
 .pcard__title {
-  margin: 0 0 12px;
-  font-size: 22px;
+  margin: 0 0 0.75rem;
+  font-size: 1.375rem;
   font-weight: 500;
 }
 
@@ -130,8 +130,8 @@
 .plist__row {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 14px 4px;
+  gap: 1.125rem;
+  padding: 0.875rem 0.25rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -146,22 +146,22 @@
 
 .plist__name {
   margin: 0 0 3px;
-  font-size: 17px;
+  font-size: 1.0625rem;
   color: var(--ink);
 }
 
 .plist__meta {
   margin: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--ink-muted);
 }
 
 .plist__rec {
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   display: grid;
   place-items: center;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background: var(--blue);
   color: #fff;
   transition: background-color 0.15s ease;
@@ -172,12 +172,12 @@
 }
 
 .plist__rec .material-symbols-rounded {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .plist__none {
-  padding: 28px 4px;
-  font-size: 16px;
+  padding: 1.75rem 0.25rem;
+  font-size: 1rem;
   color: var(--ink-faint);
 }
 
@@ -185,13 +185,13 @@
 
 .ptable {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   border-collapse: collapse;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .ptable th {
-  padding: 20px 24px;
+  padding: 1.25rem 1.5rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   font-weight: 400;
@@ -200,7 +200,7 @@
 }
 
 .ptable td {
-  padding: 25px 24px;
+  padding: 1.5625rem 1.5rem;
   border-bottom: 1px solid var(--border);
   color: var(--ink-2);
 }
@@ -208,21 +208,21 @@
 .ptable__date {
   display: inline-flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 0.625rem;
   position: relative;
 }
 
 .ptable__today {
   position: absolute;
-  top: -15px;
+  top: -0.9375rem;
   left: 0;
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.5px;
   color: var(--blue);
 }
 
 .ptable__day {
-  font-size: 22px;
+  font-size: 1.375rem;
   color: var(--ink-2);
 }
 
@@ -232,32 +232,66 @@
 }
 
 .ptable__month {
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--ink-muted);
 }
 
 .ptable__swatch {
   display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-right: 12px;
-  border-radius: 4px;
-  vertical-align: -4px;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: 0.75rem;
+  border-radius: 0.25rem;
+  vertical-align: -0.25rem;
 }
 
 .ptable__icon {
-  font-size: 19px;
-  margin-right: 6px;
-  vertical-align: -4px;
+  font-size: 1.1875rem;
+  margin-right: 0.375rem;
+  vertical-align: -0.25rem;
   color: var(--ink-2);
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 .ptable__dot {
   display: inline-block;
-  width: 9px;
-  height: 9px;
-  margin-right: 10px;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  margin-right: 0.625rem;
   border-radius: 50%;
   vertical-align: 1px;
+}
+
+/* --------------------------------- phone --------------------------------- */
+
+@media (max-width: 767px) {
+  .pcal {
+    border-left: 0;
+  }
+
+  .pcal__bar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .pcal__search {
+    order: 3;
+    width: 100%;
+  }
+
+  .pcal__add {
+    height: 38px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .pcal__body {
+    padding: 18px 12px 48px;
+  }
+
+  .pcard {
+    width: 100%;
+    padding: 16px 14px;
+  }
 }
