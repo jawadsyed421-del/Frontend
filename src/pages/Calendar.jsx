@@ -107,8 +107,6 @@ function TimeGrid({ columns = 1, children }) {
 /* -------------------------------- day view ------------------------------- */
 
 function DayView({ onOpenEvent, dimmed }) {
-  const [hovered, setHovered] = useState(null)
-
   return (
     <>
       <div className="dayhead">
@@ -121,6 +119,7 @@ function DayView({ onOpenEvent, dimmed }) {
             key={ev.id}
             type="button"
             className={`event${dimmed ? ' is-dim' : ''}`}
+            aria-describedby={`event-tip-${ev.id}`}
             style={{
               top: ev.start * HOUR_PX,
               height: (ev.end - ev.start) * HOUR_PX - 4,
@@ -128,8 +127,6 @@ function DayView({ onOpenEvent, dimmed }) {
               width: `calc(${(100 * (ev.span || 1)) / ev.lanes}% - 6px)`,
               background: ev.color,
             }}
-            onMouseEnter={() => setHovered(ev.id)}
-            onMouseLeave={() => setHovered(null)}
             onClick={() => onOpenEvent(ev)}
           >
             <span className="event__line">
@@ -139,18 +136,16 @@ function DayView({ onOpenEvent, dimmed }) {
               ID: {ev.docId} &nbsp;•&nbsp; {ev.kind}
             </span>
 
-            {hovered === ev.id && !dimmed && (
-              <span className="tip">
-                <span className="tip__label">PACIENTE</span>
-                <span className="tip__value">{ev.patient}</span>
-                <span className="tip__label">IDENTIFICACIÓN</span>
-                <span className="tip__value">{ev.docId}</span>
-                <span className="tip__label">HORA</span>
-                <span className="tip__value">{ev.time}</span>
-                <span className="tip__label">MODALIDAD</span>
-                <span className="tip__value">{ev.kind}</span>
-              </span>
-            )}
+            <span className="tip" id={`event-tip-${ev.id}`} role="tooltip">
+              <span className="tip__label">PACIENTE</span>
+              <span className="tip__value">{ev.patient}</span>
+              <span className="tip__label">IDENTIFICACIÓN</span>
+              <span className="tip__value">{ev.docId}</span>
+              <span className="tip__label">HORA</span>
+              <span className="tip__value">{ev.time}</span>
+              <span className="tip__label">MODALIDAD</span>
+              <span className="tip__value">{ev.kind}</span>
+            </span>
           </button>
         ))}
       </TimeGrid>
