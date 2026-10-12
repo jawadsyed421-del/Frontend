@@ -48,7 +48,7 @@ export default function Dashboard() {
 
   return (
     <div className="shell">
-      <Topbar />
+      <Topbar floating />
 
       <div className="shell__body">
         <Sidebar />

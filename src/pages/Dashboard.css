@@ -357,10 +357,10 @@
    it; the appointment toast hangs over that band rather than leaving it blank. */
 @media (min-width: 768px) {
   .shell__main.dashboard {
-    padding-top: 1.5rem;
+    padding-top: 1.25rem;
   }
 
   .shell__main.dashboard .dashboard__greeting {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 }

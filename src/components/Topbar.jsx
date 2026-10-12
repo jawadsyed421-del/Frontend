@@ -2,11 +2,17 @@ import Icon from './Icon'
 import { useNav } from './nav-drawer'
 import './Topbar.css'
 
-export default function Topbar({ children, offline = false, notifications, onAccount }) {
+export default function Topbar({
+  children,
+  offline = false,
+  notifications,
+  onAccount,
+  floating = false,
+}) {
   const { open, setOpen, hasNav } = useNav()
 
   return (
-    <header className="topbar">
+    <header className={`topbar${floating ? ' topbar--floating' : ''}`}>
       {hasNav && (
         <button
           className="topbar__menu"
