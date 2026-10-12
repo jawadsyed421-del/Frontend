@@ -7,12 +7,11 @@ export default function Topbar({
   offline = false,
   notifications,
   onAccount,
-  floating = false,
 }) {
   const { open, setOpen, hasNav } = useNav()
 
   return (
-    <header className={`topbar${floating ? ' topbar--floating' : ''}`}>
+    <header className="topbar">
       {hasNav && (
         <button
           className="topbar__menu"

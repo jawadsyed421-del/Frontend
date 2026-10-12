@@ -80,11 +80,11 @@
   color: #fff;
 }
 
-/* Floating variant: on screens with nothing to put in the bar, the icons hover
-   over the page's top-right corner instead of reserving a blank band. Phones
-   keep the normal bar, because that is where the drawer's menu button lives. */
+/* On tablet and desktop the bar's icons hover over the page's top-right corner
+   instead of reserving a blank band across the top. Phones keep the normal
+   bar, because that is where the drawer's menu button lives. */
 @media (min-width: 768px) {
-  .topbar--floating {
+  .topbar {
     position: absolute;
     top: 0;
     right: 1rem;

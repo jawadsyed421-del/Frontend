@@ -645,3 +645,14 @@ select {
     transition: none;
   }
 }
+
+/* With the topbar floating, content starts at the top instead of under a band. */
+@media (min-width: 768px) {
+  .shell .shell__main {
+    padding-top: 1.5rem;
+  }
+
+  .v2 .v2__inner {
+    padding-top: 1.5rem;
+  }
+}
