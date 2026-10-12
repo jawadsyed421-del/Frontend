@@ -352,3 +352,15 @@
     flex-wrap: wrap;
   }
 }
+
+/* The topbar is nearly empty on this screen, so the content starts closer to
+   it; the appointment toast hangs over that band rather than leaving it blank. */
+@media (min-width: 768px) {
+  .shell__main.dashboard {
+    padding-top: 1.5rem;
+  }
+
+  .shell__main.dashboard .dashboard__greeting {
+    margin-bottom: 1.5rem;
+  }
+}

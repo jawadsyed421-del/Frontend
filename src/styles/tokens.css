@@ -26,7 +26,7 @@
 
   /* Metrics. Design frame is 1728px wide; 1rem == 16px there (see html rule). */
   --sidebar-w: 19.6875rem;
-  --topbar-h: 4.3125rem;
+  --topbar-h: 3.25rem;
   --gutter: 4.25rem;
   --card-gap: 1.9375rem;
   --radius-card: 0.875rem;
